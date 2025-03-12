@@ -19,3 +19,9 @@ def course_slug_generator(sender, instance, *args, **kwargs):
         instance.slug = course_slug(instance)
 
 pre_save.connect(course_slug_generator, sender = CourseInfo)
+
+class CourseDetails(models.Model):
+    user         = models.ForeignKey(User, on_delete = models.CASCADE)
+    course_info  = models.ForeignKey(Course Info, on_delete = models.CASCADE)
+    course_image = models.ImageField(blank=True, null=True)
+    course_desc  = models.TextField()
